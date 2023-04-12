@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="prayer time.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300&family=Tajawal&display=swap" rel="stylesheet">
+    <title>Prayer Timings   </title>
+</head>
+<body>
+    <header>
+        <h1 id="city">مكة المكرمة  </h1>
+        <p id="date">   الأربعاء 12 إبريل   </p>
+        <hr >
+
+
+    </header>
+
+
+
+        <div class="container">
+            <div class="card">
+                <div class="head">
+                    <h1 id="Fajr"> الفجر</h1>ّذ
+
+
+                </div>
+
+                <div class="time">
+                    <h1 id="time-Fajer">04:11</h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card">
+                <div class="head">
+                    <h1 id="Sunrise">  الشروق</h1>
+
+
+                </div>
+
+                <div class="time">
+                    <h1 id="time-Sunrise">04:11</h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card">
+                <div class="head">
+                    <h1 id="Dhuhr"> الظهر</h1>
+
+
+                </div>
+
+                <div class="time">
+                    <h1 id="time-Dhuhr"> 04:11</h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card">
+                <div class="head">
+                    <h1 id="Asr"> العصر</h1>
+
+
+                </div>
+
+                <div class="time">
+                    <h1 id="time-Asr">04:11</h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card">
+                <div class="head">
+                    <h1 id="Maghrib"> المغرب</h1>
+
+
+                </div>
+
+                <div class="time">
+                    <h1 id="time-Maghrib">04:11</h1>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="card">
+                <div class="head">
+                    <h1 id="Isha"> العشاء</h1>
+
+
+                </div>
+
+                <div class="time">
+                    <h1 id="time-Isha">04:11</h1>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="selectcity">
+            <select id="selectt">  
+            </select>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+<script>
+      let cities = [ 
+        {  "nameInArabic":"مكة المكرمة",
+            "nameInEnglish":"Makkah al Mukarramah"
+
+        } ,
+        {
+            "nameInArabic":"الريـاض",
+            "nameInEnglish":"Ar Riyāḑ"
+        }  , 
+        {
+            "nameInArabic":"جازان",
+            "nameInEnglish":"Jāzān"
+
+        }
+    ]
+    
+
+    for ( let city of cities){
+
+        document.getElementById("selectt").innerHTML+=` <option> ${city.nameInArabic} </option>`
+    }
+
+    document.getElementById("selectt").addEventListener("change",() => {
+        let city = document.getElementById("selectt").value
+        document.getElementById("city").innerHTML= city
+
+        for ( city of cities) {
+            if (city.nameInArabic == document.getElementById("selectt").value ){
+                NameOfCity (city.nameInEnglish)
+            }
+        
+
+
+    }
+    })
+
+
+
+
+
+
+
+    function NameOfCity(NameOfCity){
+        axios.get("http://api.aladhan.com/v1/timingsByCity/:date?city="+NameOfCity+"&country=SA")
+    .then((response) => {
+        TimeOFprayer("time-Fajer",response.data.data.timings.Fajr)
+        TimeOFprayer("time-Sunrise",response.data.data.timings.Sunrise)
+        TimeOFprayer("time-Dhuhr",response.data.data.timings.Dhuhr)
+        TimeOFprayer("time-Asr",response.data.data.timings.Asr)
+        TimeOFprayer("time-Maghrib",response.data.data.timings.Maghrib)
+        TimeOFprayer("time-Isha",response.data.data.timings.Isha)
+        document.getElementById("date").innerHTML=response.data.data.date.hijri.weekday.ar+" " + response.data.data.date.gregorian.day + " " + response.data.data.date.gregorian.month.en
+
+    })
+
+    }
+    NameOfCity("Makkah al Mukarramah")
+   
+
+
+    function TimeOFprayer(id,value){
+        document.getElementById(id).innerHTML=value
+
+    }
+  
+</script>
+</html>

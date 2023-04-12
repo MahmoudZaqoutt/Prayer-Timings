@@ -1,0 +1,65 @@
+body{
+    font-family: 'Cairo', sans-serif;
+    font-family: 'Tajawal', sans-serif;
+    direction: rtl;
+    background: linear-gradient(45deg ,#240165 , #05001c);
+    height: 90vh;
+
+}
+header {
+    color: white;
+}
+header h1 {
+    font-size: 100px;
+
+}
+header p {
+    font-size: 30px;
+    color: rgb(187, 198, 208);
+    margin-top: -50px;
+
+}
+.card {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+}
+
+.head h1 {
+    color: white;
+    background-color: rgb(56, 61, 130);
+    margin-top: -10px;
+}
+.time h1 {
+    background-color: white;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: 4000;
+}
+
+.container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 0px;
+}
+
+.selectcity{
+    margin-top: 80px;
+    text-align: center;
+}
+.selectcity select{
+    font-family: 'Cairo', sans-serif;
+    font-family: 'Tajawal', sans-serif;
+    background: linear-gradient(45deg ,#240165 , #05001c);
+    width: 250px;
+    height: 35px;
+    font-size: 23px;
+    color: white;
+    border-width: 0.5px;
+    border-radius: 20px;
+
+}
+option {
+    background-color: rgb(56, 61, 130);
+}
